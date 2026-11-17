@@ -4,7 +4,11 @@ session_set_cookie_params($cookie_lifetime);
 
 session_start();
 // Récupération des données du formulaire
-extract($_POST);
+$nouvelle_citation = $_POST['nouvelle_citation'] ?? '';
+if (!is_string($nouvelle_citation)) {
+    http_response_code(400);
+    exit('error,Citation invalide');
+}
 // var_dump($_POST);
 // echo "OK1";
 // Si la case à cocher "montrer_mail" a été cochée, on peut faire quelque chose de plus

@@ -1,7 +1,11 @@
 <?php
 session_start();
 // Récupération des données du formulaire
-extract($_POST);
+$nouveau_pseudo = $_POST['nouveau_pseudo'] ?? '';
+if (!is_string($nouveau_pseudo)) {
+    http_response_code(400);
+    exit('error,Pseudo invalide');
+}
 // var_dump($_POST);
 // echo "OK1";
 // Si la case à cocher "montrer_mail" a été cochée, on peut faire quelque chose de plus
